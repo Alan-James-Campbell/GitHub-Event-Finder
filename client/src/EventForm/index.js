@@ -1,11 +1,14 @@
-import EventFormComponent   from './EventFormComponent'
-import {connect}     		from 'react-redux'
-import { reduxForm }        from 'redux-form'
-import _                    from 'lodash'
-import {fetchEvents} 		from '../reducers/events'
+import EventFormComponent    from './EventFormComponent'
+import {connect}     		     from 'react-redux'
+import { reduxForm }         from 'redux-form'
+import _                     from 'lodash'
+import {fetchEvents, 
+        updateSubmitError
+      } 		                 from '../reducers/events'
 
 const mapStateToProps = state => {
- 
+  const {lastSubmittedUserName, lastSubmittedRepoName, hasSubmitted, submitError, isLoading} = state.events
+
   const onlyUnique = (value, index, self) => self.indexOf(value) === index
   
   const createEventTypeObject = eventTypes => {
@@ -16,7 +19,6 @@ const mapStateToProps = state => {
   	})
   	return eventTypeObject
   }
-
   const userName = _.get(state, 'form.EventForm.values.userName', '')
   const repoName = _.get(state, 'form.EventForm.values.repoName', '')
   let eventList   = _.get(state, 'events.eventList', [])
@@ -27,7 +29,6 @@ const mapStateToProps = state => {
     (repoName ? {repoName} : {}),
     (createEventTypeObject(eventTypes))
   )
-  const {lastSubmittedUserName, lastSubmittedRepoName, hasSubmitted} = state.events
   const hasChangedAfterSubmission = (hasSubmitted) && ((lastSubmittedUserName !== userName || lastSubmittedRepoName !== repoName))
   eventList = eventList.filter(event => (Object.keys(initialValues).includes(event.type)) && (initialValues[event.type] === true))
   const disableSubmit = (hasSubmitted && !hasChangedAfterSubmission)
@@ -40,7 +41,9 @@ const mapStateToProps = state => {
     eventList,
     eventTypes,
     initialValues,
-    disableSubmit
+    disableSubmit,
+    submitError,
+    isLoading
   }
 }
 
@@ -49,6 +52,9 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     getEvents(e, userName, repoName) {
       e.preventDefault()
       dispatch(fetchEvents(userName, repoName))
+    },    
+    updateSubmitError(str) {
+      dispatch(updateSubmitError(str))
     }
   }
 }

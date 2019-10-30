@@ -16,4 +16,3 @@ const App = ({getEvents}) => {
 }
 
 export default App
-

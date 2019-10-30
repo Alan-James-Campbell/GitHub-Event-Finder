@@ -5,7 +5,7 @@ const axios   = require('axios')
 const app = express()
 
 // Serve the static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')))
+app.use(express.static(path.join(__dirname, 'client/public')))
 
 // An api endpoint that returns a list of Event by Owner and Repo name
 app.get('/api/getEvents/:userName/:repoName', (req,res, next) => {
@@ -19,7 +19,7 @@ app.get('/api/getEvents/:userName/:repoName', (req,res, next) => {
 
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/index.html'));
+    res.sendFile(path.join(__dirname+'/public/index.html'));
 });
 
 const port = process.env.PORT || 5000;
