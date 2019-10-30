@@ -62,6 +62,9 @@ export const fetchEvents = (userName, repoName) => dispatch => {
   .then(response => {
   	const data = response.data
   	dispatch(updateEvents(data))
+    if(data.length < 1){
+      dispatch(updateSubmitError('No Events Found. Only events created within the past 90 days are included'))
+    }
   	dispatch(updateLastSubmittedParams(userName, repoName, true))
     dispatch(updateIsLoading(false))
   })

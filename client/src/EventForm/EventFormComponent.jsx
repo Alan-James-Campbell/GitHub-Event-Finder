@@ -34,6 +34,7 @@ const EventForm = ({eventList, eventTypes, disableSubmit, submitError, getEvents
           eventTypes.map((type, idx) => {
           	return (
           	  <div className='eventTypeCheckBoxes' key={idx}>	
+              <div className='checkBoxes'/>
   	            <label>{type}</label>	
   	            <Field name={type} component={renderField} type='checkbox' defaultChecked={true}/>
               </div>

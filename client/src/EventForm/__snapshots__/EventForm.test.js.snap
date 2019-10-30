@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventForm renders without crashing given the required props 1`] = `
+<div
+  className="eventForm"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <label>
+      User Name
+    </label>
+    <Field
+      component={[Function]}
+      label="User Name"
+      name="userName"
+      onFocus={[Function]}
+      validate={
+        Array [
+          [Function],
+        ]
+      }
+    />
+    <label>
+      Repo Name
+    </label>
+    <Field
+      component={[Function]}
+      label="Repo Name"
+      name="repoName"
+      onFocus={[Function]}
+      validate={
+        Array [
+          [Function],
+        ]
+      }
+    />
+    <div>
+      <Button
+        active={false}
+        disabled={false}
+        type="submit"
+        variant="primary"
+      >
+        <div>
+          Submit
+        </div>
+      </Button>
+    </div>
+  </form>
+</div>
+`;

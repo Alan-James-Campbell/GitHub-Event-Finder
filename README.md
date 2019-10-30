@@ -23,14 +23,15 @@ To create new technology.
 - React
 - Express
 - Node
-- Reudux
+- Redux
 
 ## API Reference
 
-Endpoint: '${ApplicationURL}/api/getEvents/:userName/:repoName'
-Response: List of GitHub events filtered by parameters
+- Endpoint: '${ApplicationURL}/api/getEvents/:userName/:repoName'
+- Response: List of GitHub events filtered by parameters
 
-## Tests
-//todo//
+## Tests - Jasmine, Enzyme
+1) $ cd client
+2) $ npm test
 
 
