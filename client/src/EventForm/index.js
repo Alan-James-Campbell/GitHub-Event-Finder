@@ -20,21 +20,27 @@ const mapStateToProps = state => {
   const userName = _.get(state, 'form.EventForm.values.userName', '')
   const repoName = _.get(state, 'form.EventForm.values.repoName', '')
   let eventList   = _.get(state, 'events.eventList', [])
-  const eventTypes = eventList.length > 0 ? eventList.map(event => event.type).filter(onlyUnique) : []
+  let eventTypes = eventList.length > 0 ? eventList.map(event => event.type).filter(onlyUnique) : []
   const initialValues = Object.assign(
     {},
     (userName ? {userName} : {}),
     (repoName ? {repoName} : {}),
     (createEventTypeObject(eventTypes))
   )
+  const {lastSubmittedUserName, lastSubmittedRepoName, hasSubmitted} = state.events
+  const hasChangedAfterSubmission = (hasSubmitted) && ((lastSubmittedUserName !== userName || lastSubmittedRepoName !== repoName))
   eventList = eventList.filter(event => (Object.keys(initialValues).includes(event.type)) && (initialValues[event.type] === true))
+  const disableSubmit = (hasSubmitted && !hasChangedAfterSubmission)
+  eventTypes = disableSubmit ? eventTypes : []
+  eventList = disableSubmit ? eventList : []
   
   return {
     userName,
     repoName,
     eventList,
     eventTypes,
-    initialValues
+    initialValues,
+    disableSubmit
   }
 }
 

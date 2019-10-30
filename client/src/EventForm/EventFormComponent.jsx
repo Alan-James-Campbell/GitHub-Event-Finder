@@ -4,9 +4,9 @@ import { Button }   from 'react-bootstrap'
 import       		'./EventForm.css'
 
 
-const EventForm = ({eventList, eventTypes, getEvents, userName, repoName, valid, initialValues}) => {
+const EventForm = ({eventList, eventTypes, disableSubmit, getEvents, userName, repoName, valid, initialValues}) => {
   console.log('eventList', eventList)
-  console.log('EventTypes', eventTypes)
+  console.log('disableSubmit', disableSubmit)
   //   Alan-James-Campbell    'GitHub-Event-Finder'   
 
 
@@ -40,12 +40,22 @@ const EventForm = ({eventList, eventTypes, getEvents, userName, repoName, valid,
 
         <Button
           block
-          disabled={!valid}
+          disabled={disableSubmit}
           type="submit"
         >
           Submit
-        </Button>
+        </Button>        
+
       </form>
+      {(eventList.length > 0)&&(
+          eventList.map((event, idx) => {
+            return (
+              <div key={idx}> 
+                <h3>{event.repo.name}</h3>
+              </div>
+            )
+          })
+        )}
     </div>
   )
   
