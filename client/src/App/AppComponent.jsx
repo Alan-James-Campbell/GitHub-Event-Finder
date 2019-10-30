@@ -1,34 +1,19 @@
-import React from 'react';
-import './App.css';
-import axios from 'axios'
+import React 			  from 'react'
+import EventForm          from '../EventForm'
+import                   './App.css'
 
-class App extends React.Component {
+const App = ({getEvents}) => {
 
-  componentDidMount() {
-    const {getEvents} = this.props
-    getEvents('Alan-James-Campbell', 'GitHub_Event_Finder')
-  }
-
-  render() {
-
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    )
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Search For GitHub Events</h1>
+        <EventForm/>
+      </header>
+    </div>
+  )
+  
 }
 
 export default App
+

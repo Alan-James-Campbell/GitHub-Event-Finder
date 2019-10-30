@@ -7,10 +7,11 @@ const UPDATE_EVENTS = 'UPDATE_EVENTS'
 /* ------------   ACTION CREATORS     ------------------ */
 
 const updateEvents = events => ({type: UPDATE_EVENTS, events})
+
 /* ------------       REDUCER     ------------------ */
 
 const initState = {
-	events: []
+	eventList: []
 }
 
 export const reducer = (state = initState, action) => {
@@ -18,9 +19,8 @@ export const reducer = (state = initState, action) => {
 	switch (action.type){
 
 		case UPDATE_EVENTS:
-			newState.events = action.events
+			newState.eventList = action.events
 			break;
-
 
 		default:
 			return state;
@@ -28,6 +28,7 @@ export const reducer = (state = initState, action) => {
 	return newState;
 }
 /* ------------       DISPATCHERS     ------------------ */
+
 export const fetchEvents = (userName, repoName) => dispatch => {
   axios.get(`/api/getEvents/${userName}/${repoName}`)
   .then(response => dispatch(updateEvents(response.data)))

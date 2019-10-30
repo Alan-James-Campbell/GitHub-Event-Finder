@@ -1,0 +1,11 @@
+.EventForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.eventTypeCheckBoxes {
+  margin-top: 25px;
+  font-size: 12px;
+}
